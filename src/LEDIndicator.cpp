@@ -12,6 +12,8 @@ LEDIndicator::LEDIndicator(uint8_t LEDPin, int LEDCount, bool RGB) : leds(LEDCou
 /// @brief Initializes the LEDs
 /// @return True on success
 bool LEDIndicator::begin() {
+	Description.name = "LED Indicator";
+	Description.version = "0.8";
 	// Start LEDs
 	if (rgb) {
 		leds.begin();
