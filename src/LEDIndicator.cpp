@@ -31,10 +31,10 @@ bool LEDIndicator::begin() {
 /// @return True on success
 bool LEDIndicator::receiveEvent(int event) {
 	if (rgb) {
-		leds.fill(color_map[(int)event]);
+		leds.fill(color_map[event]);
 		leds.show();
 	} else {
-		for (int i = 0; i < (int)event; i++) {
+		for (int i = 0; i < event; i++) {
 			digitalWrite(led_pin, HIGH);
 			delay (250);
 			digitalWrite(led_pin, LOW);
