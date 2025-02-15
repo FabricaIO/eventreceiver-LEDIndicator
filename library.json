@@ -1,0 +1,57 @@
+{
+	"name": "Fabrica-IO Event Receiver LED",
+	"version": "0.5.0",
+	"description": "LED that changes colors or blinks different number of times for event statuses",
+	"keywords": "Fabrica-IO, event receiver, led",
+	"repository":
+	{
+	  "type": "git",
+	  "url": "https://github.com/FabricaIO/eventreceiver-LEDIndicator.git"
+	},
+	"authors":
+	[
+	  {
+		"name": "Sam Groveman",
+		"email": "SamGroveman@outlook.com",
+		"url": "https://github.com/FabricaIO"
+	  }
+	],
+	"dependencies": {
+		"Adafruit NeoPixel": "adafruit/Adafruit NeoPixel@^1.12.3"
+	  },
+	"license": "GPLv3",
+	"homepage": "https://github.com/FabricaIO",
+	"frameworks": "arduino",
+	"platforms": "*",
+	"fabrica-io" : {
+		"name": "IndicatorLED",
+		"type": 3,
+		"category": "LED",
+		"libname": "LEDIndicator",
+		"includes": ["LEDIndicator"],
+		"description": "LED that changes colors or blinks different number of times for event statuses",
+		"constructor":
+		[
+			[
+				{
+					"name": "LEDPin",
+					"type": "uint8_t",
+					"description": "The pin to use",
+					"default": ""
+				},
+				{
+					"name": "LEDCount",
+					"type": "int",
+					"description": "The number of LEDs in an addressable string",
+					"default": ""
+				},
+				{
+					"name": "RGB",
+					"type": "bool",
+					"description": "If the LED is a WS2812 RGB LED",
+					"default": "true"
+				}
+			]
+		]
+	}
+  }
