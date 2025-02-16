@@ -1,5 +1,5 @@
 {
-	"name": "Fabrica-IO Event Receiver LED",
+	"name": "eventreceiver-LEDIndicator",
 	"version": "0.5.0",
 	"description": "LED that changes colors or blinks different number of times for event statuses",
 	"keywords": "Fabrica-IO, event receiver, led",
