@@ -50,6 +50,12 @@
 					"type": "bool",
 					"description": "If the LED is a WS2812 RGB LED",
 					"default": "true"
+				},
+				{
+					"name": "RGB_Type",
+					"type": "neoPixelType",
+					"description": "If RGB, the type of RGB LED to use",
+					"default": "NEO_GRB + NEO_KHZ800"
 				}
 			]
 		]

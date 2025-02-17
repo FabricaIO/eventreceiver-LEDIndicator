@@ -4,7 +4,8 @@
 /// @param LEDPin The LED pin
 /// @param LEDCount The number of LEDs
 /// @param RGB True to use an RGB LED, False to use a single color LED
-LEDIndicator::LEDIndicator(uint8_t LEDPin, int LEDCount, bool RGB) : leds(LEDCount, LEDPin, NEO_GRB + NEO_KHZ800) {
+/// @param LED_Type If RGB, the type of RGB LED to use
+LEDIndicator::LEDIndicator(uint8_t LEDPin, int LEDCount, bool RGB, neoPixelType LED_Type) : leds(LEDCount, LEDPin, LED_Type) {
 	rgb = RGB;
 	led_pin = LEDPin;
 }

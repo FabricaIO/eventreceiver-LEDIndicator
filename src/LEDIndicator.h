@@ -12,9 +12,10 @@
 #include <Adafruit_NeoPixel.h>
 #include <EventReceiver.h>
 
+/// @brief Shows events on an LED
 class LEDIndicator : public EventReceiver {
 	public:
-		LEDIndicator(uint8_t LEDPin, int LEDCount, bool RGB = true);
+		LEDIndicator(uint8_t LEDPin, int LEDCount, bool RGB = true, neoPixelType LED_Type = NEO_GRB + NEO_KHZ800);
 		bool begin();
 		bool receiveEvent(int event);
 	
