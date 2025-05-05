@@ -37,9 +37,9 @@ bool LEDIndicator::receiveEvent(int event) {
 	} else {
 		for (int i = 0; i < event; i++) {
 			digitalWrite(led_pin, HIGH);
-			delay (250);
+			delay (150);
 			digitalWrite(led_pin, LOW);
-			delay (250);
+			delay (150);
 		}
 	}
 	return true;
