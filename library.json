@@ -46,6 +46,12 @@
 					"default": ""
 				},
 				{
+					"name": "startupOnly",
+					"type": "bool",
+					"description": "Only show events during startup",
+					"default": "false"
+				},
+				{
 					"name": "RGB",
 					"type": "bool",
 					"description": "If the LED is a WS2812 RGB LED",
