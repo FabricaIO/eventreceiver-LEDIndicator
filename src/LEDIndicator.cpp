@@ -20,11 +20,23 @@ LEDIndicator::LEDIndicator(uint8_t LEDPin, int LEDCount, bool startupOnly, bool 
 bool LEDIndicator::begin() {
 	Description.name = "LED Indicator";
 	Description.version = "0.8";
+	if (rgb) {
+		if (NeoPixelControl::neoMutex == NULL) {
+			if (!NeoPixelControl::createMutex()) {
+				return false;
+			}
+		}
+	}
 	// Start LEDs
 	if (rgb) {
+		if (xSemaphoreTake(NeoPixelControl::neoMutex, pdMS_TO_TICKS(1000)) == pdFALSE) {
+			Logger.println("LEDIndicator: timeout waiting for mutex");
+			return false;
+		}
 		leds.begin();
 		leds.fill(); // Clear LEDs
 		leds.show();
+		xSemaphoreGive(NeoPixelControl::neoMutex);
 	} else {
 		pinMode(led_pin, OUTPUT);
 		digitalWrite(led_pin, LOW);
@@ -36,10 +48,15 @@ bool LEDIndicator::begin() {
 /// @param color The color to show
 /// @return True on success
 bool LEDIndicator::receiveEvent(int event) {
-	if (!POSTSuccess || !startup) {
+	if (!POSTSuccess || !startup || event == 7) {
 		if (rgb) {
+			if (xSemaphoreTake(NeoPixelControl::neoMutex, pdMS_TO_TICKS(1000)) == pdFALSE) {
+				Logger.println("LEDIndicator: timeout waiting for mutex");
+				return false;
+			}
 			leds.fill(color_map[event]);
 			leds.show();
+			xSemaphoreGive(NeoPixelControl::neoMutex);
 		} else {
 			for (int i = 0; i < event; i++) {
 				digitalWrite(led_pin, HIGH);
@@ -48,9 +65,14 @@ bool LEDIndicator::receiveEvent(int event) {
 				delay (150);
 			}
 		}
-	} else {
+	} else if (rgb) {
+		if (xSemaphoreTake(NeoPixelControl::neoMutex, pdMS_TO_TICKS(1000)) == pdFALSE) {
+			Logger.println("LEDIndicator: timeout waiting for mutex");
+			return false;
+		}
 		leds.fill();
 		leds.show();
+		xSemaphoreGive(NeoPixelControl::neoMutex);
 	}
 	return true;
 }

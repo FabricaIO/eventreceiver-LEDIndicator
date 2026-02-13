@@ -11,6 +11,7 @@
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
 #include <EventReceiver.h>
+#include <NeoPixelControl.h>
 
 /// @brief Shows events on an LED
 class LEDIndicator : public EventReceiver {
@@ -26,7 +27,7 @@ class LEDIndicator : public EventReceiver {
 		/// @brief Indicates if the LED is an RGB LED
 		bool rgb;
 
-		/// @brief True to only show signals during startup (essentially ignore the events from the periodic task loop)
+		/// @brief True to only show signals during startup (essentially ignore the events from the periodic task loop) except errors
 		bool startup;
 
 		/// @brief The pin connected to the LED(s)
