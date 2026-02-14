@@ -47,9 +47,9 @@
 					"default": ""
 				},
 				{
-					"name": "startupOnly",
+					"name": "ignoreRunning",
 					"type": "bool",
-					"description": "Only show events during startup",
+					"description": "Ignore status events when running normally",
 					"default": "false"
 				},
 				{

@@ -6,13 +6,13 @@ extern bool POSTSuccess;
 /// @brief Creates and LED indicator
 /// @param LEDPin The LED pin
 /// @param LEDCount The number of LEDs
-/// @param startupOnly If set to true, will only show signals during that startup process
+/// @param ignoreRunning If set to true, will only show signals during that startup process
 /// @param RGB True to use an RGB LED, False to use a single color LED
 /// @param LED_Type If RGB, the type of RGB LED to use
-LEDIndicator::LEDIndicator(uint8_t LEDPin, int LEDCount, bool startupOnly, bool RGB, neoPixelType LED_Type) : leds(LEDCount, LEDPin, LED_Type) {
+LEDIndicator::LEDIndicator(uint8_t LEDPin, int LEDCount, bool ignoreRunning, bool RGB, neoPixelType LED_Type) : leds(LEDCount, LEDPin, LED_Type) {
 	rgb = RGB;
 	led_pin = LEDPin;
-	startup = startupOnly;
+	running = ignoreRunning;
 }
 
 /// @brief Initializes the LEDs
@@ -44,11 +44,11 @@ bool LEDIndicator::begin() {
 	return true;
 }
 
-/// @brief Shows a color on the LED indicator, or blinks the LED
+/// @brief Shows a color on the LED indicator or blinks the LED
 /// @param color The color to show
 /// @return True on success
 bool LEDIndicator::receiveEvent(int event) {
-	if (!POSTSuccess || !startup || event == 7) {
+	if (!running || (event != 1 && event != 2)) {
 		if (rgb) {
 			if (xSemaphoreTake(NeoPixelControl::neoMutex, pdMS_TO_TICKS(1000)) == pdFALSE) {
 				Logger.println("LEDIndicator: timeout waiting for mutex");

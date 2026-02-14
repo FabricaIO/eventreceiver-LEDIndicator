@@ -16,7 +16,7 @@
 /// @brief Shows events on an LED
 class LEDIndicator : public EventReceiver {
 	public:
-		LEDIndicator(uint8_t LEDPin, int LEDCount, bool startupOnly = false, bool RGB = true, neoPixelType LED_Type = NEO_GRB + NEO_KHZ800);
+		LEDIndicator(uint8_t LEDPin, int LEDCount, bool ignoreRunning = false, bool RGB = true, neoPixelType LED_Type = NEO_GRB + NEO_KHZ800);
 		bool begin();
 		bool receiveEvent(int event);
 	
@@ -27,8 +27,8 @@ class LEDIndicator : public EventReceiver {
 		/// @brief Indicates if the LED is an RGB LED
 		bool rgb;
 
-		/// @brief True to only show signals during startup (essentially ignore the events from the periodic task loop) except errors
-		bool startup;
+		/// @brief Set true to disable the LED when running normally (i.e. only show error or configuration events)
+		bool running;
 
 		/// @brief The pin connected to the LED(s)
 		int led_pin;
