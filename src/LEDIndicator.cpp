@@ -1,8 +1,5 @@
 #include "LEDIndicator.h"
 
-/// @brief true when start up succeeds
-extern bool POSTSuccess;
-
 /// @brief Creates and LED indicator
 /// @param LEDPin The LED pin
 /// @param LEDCount The number of LEDs
