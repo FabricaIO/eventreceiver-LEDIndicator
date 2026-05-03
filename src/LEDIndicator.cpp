@@ -3,7 +3,7 @@
 /// @brief Creates and LED indicator
 /// @param LEDPin The LED pin
 /// @param LEDCount The number of LEDs
-/// @param ignoreRunning If set to true, will only show signals during that startup process
+/// @param ignoreRunning Set true to disable the LED when running normally (i.e. only show error or configuration events)
 /// @param RGB True to use an RGB LED, False to use a single color LED
 /// @param LED_Type If RGB, the type of RGB LED to use
 LEDIndicator::LEDIndicator(uint8_t LEDPin, int LEDCount, bool ignoreRunning, bool RGB, neoPixelType LED_Type) : leds(LEDCount, LEDPin, LED_Type) {
